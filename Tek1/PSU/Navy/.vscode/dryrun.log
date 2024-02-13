@@ -1,0 +1,17 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/btanguy/delivery/2020-2021/B-PSU-101-NAN-1-1-navy-johan.chrillesen'
+gcc -Wall -Wshadow -Wextra -I./include -I./lib/my   -c -o src/main.o src/main.c
+gcc -Wall -Wshadow -Wextra -I./include -I./lib/my   -c -o src/check_placements.o src/check_placements.c
+gcc -Wall -Wshadow -Wextra -I./include -I./lib/my   -c -o src/create_map.o src/create_map.c
+gcc -Wall -Wshadow -Wextra -I./include -I./lib/my   -c -o src/boats.o src/boats.c
+gcc -Wall -Wshadow -Wextra -I./include -I./lib/my   -c -o src/init_boats.o src/init_boats.c
+gcc -Wall -Wshadow -Wextra -I./include -I./lib/my   -c -o src/signals.o src/signals.c
+gcc -Wall -Wshadow -Wextra -I./include -I./lib/my   -c -o src/connect.o src/connect.c
+gcc -Wall -Wshadow -Wextra -I./include -I./lib/my   -c -o src/files.o src/files.c
+gcc -Wall -Wshadow -Wextra -I./include -I./lib/my   -c -o src/play.o src/play.c
+gcc -Wall -Wshadow -Wextra -I./include -I./lib/my   -c -o src/change_maps.o src/change_maps.c
+gcc -Wall -Wshadow -Wextra -I./include -I./lib/my   -c -o src/end_game.o src/end_game.c
+make re -C lib/my/
+gcc src/main.o src/check_placements.o src/create_map.o src/boats.o src/init_boats.o src/signals.o src/connect.o src/files.o src/play.o src/change_maps.o src/end_game.o -o navy  -L./lib/my -lmy
+make: Leaving directory '/home/btanguy/delivery/2020-2021/B-PSU-101-NAN-1-1-navy-johan.chrillesen'
+ 
