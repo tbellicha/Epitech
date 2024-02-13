@@ -1,0 +1,65 @@
+name: Deploy Docs
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  BUILD_TYPE: Release
+  WORKING_DIR: ./server
+
+jobs:
+  deploy-docs:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    - name: Install dependencies
+      run: npm install
+      working-directory: ${{ env.WORKING_DIR }}
+    - name: Install prisma-docs-generator
+      run: npm install prisma-docs-generator
+      working-directory: ${{ env.WORKING_DIR }}
+    - name: Generate Prisma docs
+      run: npx prisma generate
+      working-directory: ${{ env.WORKING_DIR }}
+    - name: Generate Swagger doc
+      run: npx swagger-jsdoc -d swagger.json server_app.js api/**/*.js -o swaggerdoc.json
+      working-directory: ${{ env.WORKING_DIR }}
+    - name: Swagger UI Action
+      uses: Legion2/swagger-ui-action@v1.1.6
+      with:
+        output: ./server/docs/swagger
+        spec-file: ./server/swaggerdoc.json
+
+    - name: Js documentation
+      uses: andstor/jsdoc-action@v1
+      with:
+        source_dir: ./server
+        output_dir: ./server/docs/js
+        template: minami
+        front_page: README.md
+
+    - name: Setup java
+      uses: actions/setup-java@v1
+      with:
+        java-version: '12.x'
+    - name: Flutter download
+      uses: subosito/flutter-action@v1
+      with:
+        channel: 'beta'
+    - name: Flutter dependencies
+      working-directory: ./application/app_code
+      run: flutter pub get
+    - name: Generate Flutter Documentation
+      working-directory: ./application/app_code
+      run: |
+        dart pub global activate dartdoc
+        dart doc --output ../../server/docs/flutter
+
+    - name: Deploy docs
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        publish_dir: ./server/docs
