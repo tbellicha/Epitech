@@ -1,0 +1,7 @@
+*.o
+test
+usage
+.vscode
+result
+*_exec
+*.a
