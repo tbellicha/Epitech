@@ -1,0 +1,7 @@
+
+BSSID, First time seen, Last time seen, channel, Speed, Privacy, Cipher, Authentication, Power, # beacons, # IV, LAN IP, ID-length, ESSID, Key
+E6:98:31:BB:7C:E0, 2022-05-10 16:23:14, 2022-05-10 16:24:06,  1, 360, WPA2, CCMP, PSK,  -4,      134,      115,   0.  0.  0.  0,  21, wifi_cannot_be_hacked, 
+
+Station MAC, First time seen, Last time seen, Power, # packets, BSSID, Probed ESSIDs
+8C:F5:A3:F9:E6:95, 2022-05-10 16:23:18, 2022-05-10 16:24:01, -51,      102, E6:98:31:BB:7C:E0,
+

@@ -1,0 +1,19 @@
+Start testing: May 19 11:55 CEST
+----------------------------------------------------------
+1/1 Testing: unit_test
+1/1 Test: unit_test
+Command: "/home/btanguy/delivery/Actual/Workshop/CMake/build/tests/unit_test"
+Directory: /home/btanguy/delivery/Actual/Workshop/CMake/build/tests
+"unit_test" start time: May 19 11:55 CEST
+Output:
+----------------------------------------------------------
+[====] Synthesis: Tested: 3 | Passing: 3 | Failing: 0 | Crashing: 0 
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"unit_test" end time: May 19 11:55 CEST
+"unit_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: May 19 11:55 CEST

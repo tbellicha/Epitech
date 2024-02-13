@@ -1,0 +1,56 @@
+name: Tests
+
+on:
+  push:
+    branches: [ "main", "dev" ]
+  pull_request:
+    branches: [ "main", "dev" ]
+
+jobs:
+  hello-world:
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Say hello world
+      run: echo Welcome to the Github Actions workshop !
+
+  unit-test:
+    container: epitechcontent/epitest-docker:devel
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: unit-test
+      run: make tests_run
+
+    - name: coverage
+      if: ${{ always() }}
+      run: make coverage > coverage_outputs
+
+    - uses: actions/upload-artifact@v3
+      with:
+        name: my-artifact
+        path: coverage_outputs
+
+  function-tests_outputs:
+    container: epitechcontent/epitest-docker:devel
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: functional-test
+      run: make re && ./functional-test.sh > function-tests_outputs
+
+    - name: Upload functional artifacts
+      if: ${{ always() }}
+      uses: actions/upload-artifact@v3
+      with:
+        name: my-artifact
+        path: function-tests_outputs

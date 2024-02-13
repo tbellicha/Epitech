@@ -1,0 +1,13 @@
+[
+{
+  "directory": "/home/btanguy/delivery/Actual/Workshop/CMake/build",
+  "command": "/usr/bin/cc  -I../include  -g   -std=gnu11 -o lib/ikea/CMakeFiles/libikea.dir/get_furniture.c.o   -c /home/btanguy/delivery/Actual/Workshop/CMake/lib/ikea/get_furniture.c",
+  "file": "/home/btanguy/delivery/Actual/Workshop/CMake/lib/ikea/get_furniture.c"
+},
+
+{
+  "directory": "/home/btanguy/delivery/Actual/Workshop/CMake/build",
+  "command": "/usr/bin/cc  -I../include  -g   -std=gnu11 -o src/CMakeFiles/hello.dir/hello_world.c.o   -c /home/btanguy/delivery/Actual/Workshop/CMake/src/hello_world.c",
+  "file": "/home/btanguy/delivery/Actual/Workshop/CMake/src/hello_world.c"
+}
+]
