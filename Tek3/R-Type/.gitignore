@@ -1,0 +1,14 @@
+launch.sh
+.devcontainer/
+.vscode/
+.vs/
+build/
+r-type_client*
+r-type_server*
+*.gcda
+*.gcno
+*.gcov
+*.o
+.DS_Store
+doc/output/
+doc/warnings.txt

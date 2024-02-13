@@ -1,0 +1,19 @@
+[generators]
+cmake
+
+[requires]
+zlib/1.2.13
+sfml/2.5.1
+boost/1.80.0
+
+[options]
+boost:multithreading=True
+sfml:shared=True
+sfml:graphics=True
+sfml:window=True
+sfml:audio=True
+sfml:network=True
+
+[imports]
+bin, *.dll -> ./bin # Copies all dll files in bin folder
+lib, *.dylib* -> ./bin # Copies all dylib files in bin folder

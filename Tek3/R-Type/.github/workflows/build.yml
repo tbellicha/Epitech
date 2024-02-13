@@ -1,0 +1,98 @@
+name: Build
+
+on: push
+
+jobs:
+  build-on-ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install prerequisiteries
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake g++ libudev-dev pip pkg-config libgl-dev
+
+      - name: Install conan
+        uses: turtlebrowser/get-conan@main
+
+      - name: Build rtype binaries on Ubuntu (desktop)
+        run: |
+          mkdir -p build; cd build && conan install .. --build=missing  -s compiler.libcxx=libstdc++11 -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True && cmake -DCMAKE_BUILD_TYPE=Debug .. && cmake --build  . -- -j 3
+
+      - name: Check Ubuntu build (desktop)
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "r_type-client, r_type-server"
+
+  build-on-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Cache Conan packages
+        id: cache_windows
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.conan
+            C:\.conan
+          key: ${{ runner.os }}-${{ hashfiles('**/conanfile.txt') }}
+
+      - name: Install conan
+        uses: turtlebrowser/get-conan@main
+
+      - name: Checkout repository
+        uses: actions/checkout@v1
+
+      - name: Install dependencies
+        run: |
+          mkdir -p build; cd build
+          conan install .. --build=missing
+
+      - name: Build rtype on Windows (desktop)
+        run: |
+          cd build/
+          cmake -DCMAKE_BUILD_TYPE=Debug -D_WIN32_WINNT=0x0601 ..
+          cmake --build  .
+
+      - name: Check Windows build (desktop)
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "r_type-client.exe, r_type-server.exe"
+
+  build-on-rpi-arm:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install prerequisiteries
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake g++ libudev-dev pkg-config libgl-dev
+
+      - name: Install conan
+        run: |
+          sudo apt install -y python3-pip
+          sudo pip3 install conan
+          which conan
+          conan --version
+
+      - name: Build rtype binaries on Raspberry (desktop)
+        run: |
+          mkdir -p build; cd build && conan install .. --build=missing  -s compiler.libcxx=libstdc++11 -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True && cmake -DCMAKE_BUILD_TYPE=Debug .. && cmake --build  . -- -j1
+
+      - name: Check Raspberry build (desktop)
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "r_type-client, r_type-server"
+
+  mirror:
+    needs: [build-on-ubuntu, build-on-windows]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: pixta-dev/repository-mirroring-action@v1
+        with:
+          target_repo_url: ${{ secrets.EPI_REPO_URL }}
+          ssh_private_key: ${{ secrets.EPI_MIRRORING_KEY }}
