@@ -1,0 +1,6 @@
+usage*
+*.o
+myftp
+.vscode
+*unit_tests
+test_ftp.sh
