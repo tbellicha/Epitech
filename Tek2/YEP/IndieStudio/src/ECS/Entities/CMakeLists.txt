@@ -1,0 +1,10 @@
+set(INCROOT ${PROJECT_SOURCE_DIR}/src/ECS/Entities)
+set(SRCROOT ${PROJECT_SOURCE_DIR}/src/ECS/Entities)
+
+set(SRC
+    ${SRC} ${SRCROOT}/IEntity.cpp
+    PARENT_SCOPE)
+
+set(INCDIRS
+    ${INCDIRS} ${INCROOT}
+    PARENT_SCOPE)

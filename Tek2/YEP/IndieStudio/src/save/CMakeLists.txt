@@ -1,0 +1,10 @@
+set(INCROOT ${PROJECT_SOURCE_DIR}/src/save)
+set(SRCROOT ${PROJECT_SOURCE_DIR}/src/save)
+
+set(SRC
+    ${SRC} ${SRCROOT}/save.cpp
+    PARENT_SCOPE)
+
+set(INCDIRS
+    ${INCDIRS} ${INCROOT}
+    PARENT_SCOPE)
