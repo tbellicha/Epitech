@@ -1,0 +1,6 @@
+*.csv
+.idea/
+groundhog_example/
+__pycache__/
+unit_tests*
+groundhog
