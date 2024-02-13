@@ -1,0 +1,11 @@
+- name: Update apt cache and make sure git is installed
+  become: yes
+  apt:
+    name: git
+    state: present
+    update_cache: yes
+- name: Install build essentials
+  become: yes
+  apt:
+    name: build-essential
+    state: present

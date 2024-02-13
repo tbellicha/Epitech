@@ -1,0 +1,5 @@
+- name: Unarchive a file that is already on the machine
+  become: yes
+  ansible.builtin.unarchive:
+    src: ../../../poll.tar
+    dest: ~/poll_files

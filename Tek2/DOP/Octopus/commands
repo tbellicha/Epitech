@@ -1,0 +1,12 @@
+ansible-vault encrypt /tmp/secret_key
+ansible -bK -m copy -a 'src=/tmp/secret_key dest=/tmp/secret_key_vm mode=0600 owner=root group=root' -i hosts all
+sudo -i -u postgres
+psql
+\c paul
+\l
+\dt = relations
+\du = roles des tables
+
+export ANSIBLE_VAULT_PASSWORD_FILE=/tmp/.vault_pass
+echo verySecretPassword > /tmp/.vault_pass
+ansible-playbook -i production playbook.yml

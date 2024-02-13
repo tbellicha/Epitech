@@ -1,0 +1,11 @@
+- name: Make sure redis-server is installed
+  become: yes
+  apt:
+    name: redis-server
+    update-cache: yes
+
+- name: Start server
+  ansible.builtin.systemd:
+    name: redis-server
+    state: restarted
+  become: yes
