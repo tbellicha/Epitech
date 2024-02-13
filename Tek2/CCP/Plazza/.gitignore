@@ -1,0 +1,11 @@
+.vscode
+plazza
+logs.txt
+unit_tests
+*.gcno
+*.gcda
+*.o
+recievetest
+sendtest
+testRecieve.c
+testSend.c
