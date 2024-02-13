@@ -1,0 +1,22 @@
+name: Build on Win
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-on-win:
+    name: Build on Win
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          make
+          pip3 install pyinstaller
+          pyinstaller --onefile pbrain-gomoku-ai
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: pbrain-gomoku-ai
+          path: dist/pbrain-gomoku-ai.exe
