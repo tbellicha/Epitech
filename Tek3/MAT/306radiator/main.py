@@ -1,0 +1,32 @@
+#!/usr/bin/env python3
+import sys
+import process
+
+
+def print_helper():
+    print("USAGE")
+    print("\t./306radiator n ir jr [i j]\n")
+    print("DESCRIPTION")
+    print("\tn\tsize of the room")
+    print("\t(ir, jr)\tcoordinates of the radiator")
+    print("\t(i, j)\tcoordinates of a point in the room")
+    return 1
+
+
+def check_args(argc, argv):
+    if argc == 2 and argv[1] == "-h":
+        return print_helper()
+    if argc != 4 and argc != 6:
+        print("Bad arguments number, try with -h", file=sys.stderr)
+        return -1
+    return 0
+
+
+def main(argc, argv):
+    args_return = check_args(argc, argv)
+    if args_return == -1:
+        return 84
+    elif args_return == 1:
+        return 0
+    else:
+        return process.process(argv)

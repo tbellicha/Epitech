@@ -1,0 +1,9 @@
+venv/
+__pycache__/
+.idea/
+306radiator
+drawer.gnu
+.coverage
+unit_tests.py
+.pytest_cache/
+.vscode/

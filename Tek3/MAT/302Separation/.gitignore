@@ -1,0 +1,9 @@
+venv/
+__pycache__/
+.idea/
+302separation
+example
+drawer.gnu
+.coverage
+unit_tests.py
+.pytest_cache/

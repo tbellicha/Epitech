@@ -1,0 +1,11 @@
+venv/
+__pycache__/
+.idea/
+304pacman
+example
+drawer.gnu
+.coverage
+unit_tests.py
+.pytest_cache/
+map
+map1

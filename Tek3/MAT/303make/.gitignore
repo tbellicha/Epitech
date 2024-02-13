@@ -1,0 +1,10 @@
+venv/
+__pycache__/
+.idea/
+303make
+example
+drawer.gnu
+.coverage
+unit_tests.py
+.pytest_cache/
+MakefileTest
