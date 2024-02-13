@@ -1,0 +1,51 @@
+/*
+** EPITECH PROJECT, 2022
+** B-PDG-300-NAN-3-1-PDGD08-tanguy.bellicha
+** File description:
+** Droid
+*/
+
+#ifndef DROID_HPP_
+#define DROID_HPP_
+
+#include "string"
+#include "ostream"
+#include "DroidMemory.hpp"
+
+class Droid {
+    public:
+        Droid(std::string id = "");
+        Droid(const Droid &droid);
+        ~Droid();
+
+        std::string getId() const;
+        size_t getEnergy() const;
+        size_t getAttack() const;
+        size_t getToughness() const;
+        std::string* getStatus() const;
+        DroidMemory *getBattleData() const;
+
+        void setId(std::string id);
+        void setEnergy(size_t energy);
+        void setStatus(std::string* status);
+        void setBattleData(DroidMemory *memo);
+
+        bool operator==(const Droid& droid) const;
+        bool operator!=(const Droid& droid) const;
+        Droid& operator=(const Droid& droid);
+        Droid& operator<<(size_t& energy);
+	    bool operator()(std::string const * task, size_t exp);
+
+    protected:
+    private:
+        std::string _id;
+        size_t _energy;
+        const size_t _attack;
+        const size_t _toughness;
+        std::string* _status;
+        DroidMemory *_battle_data;
+};
+
+std::ostream& operator<<(std::ostream& os, const Droid& droid);
+
+#endif /* !DROID_HPP_ */
