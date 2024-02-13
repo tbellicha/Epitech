@@ -1,0 +1,13 @@
+*.o
+main.c
+*.gcno
+*.gcda
+a.out
+.vscode
+docs
+documentation
+nts_advanced
+nts_single
+subject_sample
+files/
+nanotekspice

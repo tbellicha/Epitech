@@ -1,0 +1,7 @@
+*.so
+*.o
+*.sty
+*.tex
+doc/latex/Makefile
+arcade
+.vscode
